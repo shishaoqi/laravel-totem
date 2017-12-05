@@ -20,6 +20,10 @@ class TotemServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../../config/totem.php' => config_path('totem.php'),
+        ], 'config');
+
         $this->registerResources();
         $this->defineAssetPublishing();
 
