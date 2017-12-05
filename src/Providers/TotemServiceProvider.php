@@ -104,9 +104,9 @@ class TotemServiceProvider extends ServiceProvider
     private function publishViews()
     {
         $this->publishes([
-            __DIR__.'/../../resources/views' => resource_path('views/vendor/laravel-totem'),
+            __DIR__.'/../../resources/views' => resource_path('views/vendor/totem'),
         ], 'views');
 
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'laravel-totem');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'totem');
     }
 }
