@@ -20,9 +20,8 @@ class TotemServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__.'/../../config/totem.php' => config_path('totem.php'),
-        ], 'config');
+        $this->publishConfig();
+        $this->publishViews();
 
         $this->registerResources();
         $this->defineAssetPublishing();
@@ -93,5 +92,21 @@ class TotemServiceProvider extends ServiceProvider
         $this->publishes([
             TOTEM_PATH.'/public/img' => public_path('vendor/totem/img'),
         ], 'totem-assets');
+    }
+
+    private function publishConfig()
+    {
+        $this->publishes([
+            __DIR__.'/../../config/totem.php' => config_path('totem.php'),
+        ], 'config');
+    }
+
+    private function publishViews()
+    {
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'laravel-totem');
+
+        $this->publishes([
+            __DIR__.'/../../resources/views' => resource_path('views/vendor/laravel-totem'),
+        ]);
     }
 }
