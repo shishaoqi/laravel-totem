@@ -13,12 +13,12 @@ Route::group(['prefix' => 'tasks'], function () {
     Route::get('/', 'TasksController@index')->name('totem.tasks.all');
 
     Route::get('create', 'TasksController@create')->name('totem.task.create');
-    Route::post('create', 'TasksController@store');
+    Route::post('create', 'TasksController@store')->name('totem.task.store');
 
     Route::get('{task}', 'TasksController@view')->name('totem.task.view');
 
     Route::get('{task}/edit', 'TasksController@edit')->name('totem.task.edit');
-    Route::post('{task}/edit', 'TasksController@update');
+    Route::post('{task}/edit', 'TasksController@update')->name('totem.task.update');
 
     Route::delete('{task}', 'TasksController@destroy')->name('totem.task.delete');
 

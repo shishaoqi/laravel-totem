@@ -44,7 +44,7 @@ return [
     'task_details' => '任务详情',
     'created_at' => '创建时间',
     'updated_at' => '更新时间',
-    'next_run_schedule' => '下个计划任务',
+    'next_run_schedule' => '下次执行时间',
     'execution_results' => '执行结果',
     'executed_at' => '执行时间',
     'duration' => '持续',

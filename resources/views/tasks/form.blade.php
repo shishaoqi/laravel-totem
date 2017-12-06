@@ -69,7 +69,7 @@
         <div class="uk-margin">
             <div class="uk-grid">
                 <div class="uk-width-1-1@s uk-width-1-3@m">
-                    <div class="uk-form-label">{{ trans('totem::tasks.ype') }}</div>
+                    <div class="uk-form-label">{{ trans('totem::tasks.type') }}</div>
                     <div class="uk-text-meta">Choose whether to define a cron expression or to add frequencies</div>
                 </div>
                 <div class="uk-width-1-1@s uk-width-2-3@m uk-form-controls-text">
