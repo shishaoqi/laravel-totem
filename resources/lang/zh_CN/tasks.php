@@ -21,7 +21,7 @@ return [
     'select_a_command' => '选择命令',
     'parameters' => '参数项',
     'timezone' => '时区',
-    'type' => '类别',
+    'type' => '类别选择',
     'cron_expression' => '任务表达式',
     'frequency' => '频率',
     'frequencies' => '频率',
@@ -33,10 +33,12 @@ return [
     'slack_notification' => 'Slack通知（选项）',
     'miscellaneous_options' => '其它选项',
     'do_not_overlap' => '不重叠',
-    'run_in_maintenance_mode' => '维护模式运行',
+    'run_in_maintenance_mode' => '维护模式下运行',
 
     'expression' => '表达',
     'save' => '保存',
+    'edit' => '编辑',
+    'delete' => '删除',
 
     //view
     'task_details' => '任务详情',

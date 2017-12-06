@@ -12,7 +12,7 @@
 @section('main-panel-content')
     <ul class="uk-list uk-list-striped">
         <li>
-            <span class="uk-text-muted uk-float-right">Description</span>
+            <span class="uk-text-muted uk-float-right">{{ trans('totem::tasks.description') }}</span>
             <span class="uk-float-left">{{str_limit($task->description, 80)}}</span>
         </li>
         <li>
@@ -58,7 +58,7 @@
             <span class="uk-float-left">{{$task->results->count() > 0 ? number_format(  $task->results->sum('duration') / (1000 * $task->results->count()) , 2) : '0'}} seconds</span>
         </li>
         <li>
-            <span class="uk-text-muted uk-float-right">{{ trans('totem::tasks.command') }}Next Run Schedule</span>
+            <span class="uk-text-muted uk-float-right">{{ trans('totem::tasks.next_run_schedule') }}</span>
             <span class="uk-float-left">{{$task->upcoming }}</span>
         </li>
         @if($task->dont_overlap)
@@ -68,7 +68,7 @@
         @endif
         @if($task->run_in_maintenance)
             <li>
-                <span class="uk-float-left">Runs in maintenance mode</span>
+                <span class="uk-float-left">{{ trans('totem::tasks.run_in_maintenance_mode') }}</span>
             </li>
         @endif
     </ul>
@@ -76,11 +76,11 @@
 @section('main-panel-footer')
     <div class="uk-flex uk-flex-between uk-flex-middle">
         <span>
-            <a href="{{ route('totem.task.edit', $task) }}" class="uk-button uk-button-primary uk-button-small">Edit</a>
+            <a href="{{ route('totem.task.edit', $task) }}" class="uk-button uk-button-primary uk-button-small">{{ trans('totem::tasks.edit') }}</a>
             <form class="uk-display-inline" action="{{route('totem.task.delete', $task)}}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('delete') }}
-                <button type="submit" class="uk-button uk-button-danger uk-button-small">Delete</button>
+                <button type="submit" class="uk-button uk-button-danger uk-button-small">{{ trans('totem::tasks.delete') }}</button>
             </form>
         </span>
         <execute-button :data-task="{{ $task }}" url="{{route('totem.task.execute', $task)}}" button-class="uk-button-small uk-button-primary"></execute-button>

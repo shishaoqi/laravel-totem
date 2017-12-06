@@ -37,6 +37,8 @@ return [
 
     'expression' => 'Expression',
     'save' => 'Save',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
 
     //view
     'task_details' => 'Task Details',
