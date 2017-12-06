@@ -26,12 +26,16 @@ return [
     'frequency' => 'Frequency',
     'frequencies' => 'Frequencies',
     'no_parameters' => 'No Parameters',
+    'add_frequency' => 'Add Frequency',
     'no_frequencies_found' => 'No Frequencies Found',
     'email_notification' => 'Email Notification (optional)',
     'SMS_notification' => 'SMS Notification (optional)',
     'slack_notification' => 'Slack Notification (optional)',
     'miscellaneous_options' => 'Miscellaneous Options',
+    'do_not_overlap' => 'Don\'t Overlap',
+    'run_in_maintenance_mode' => 'Run in maintenance mode',
 
+    'expression' => 'Expression',
     'save' => 'Save',
 
     //view

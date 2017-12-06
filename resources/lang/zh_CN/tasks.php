@@ -26,12 +26,16 @@ return [
     'frequency' => '频率',
     'frequencies' => '频率',
     'no_parameters' => '无参数',
+    'add_frequency' => '添加频率',
     'no_frequencies_found' => '未找到频率',
     'email_notification' => '邮件通知（选项）',
     'SMS_notification' => 'SMS通知（选项）',
     'slack_notification' => 'Slack通知（选项）',
     'miscellaneous_options' => '其它选项',
+    'do_not_overlap' => '不重叠',
+    'run_in_maintenance_mode' => '维护模式运行',
 
+    'expression' => '表达',
     'save' => '保存',
 
     //view

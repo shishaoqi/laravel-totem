@@ -1,7 +1,7 @@
 @extends('totem::layout')
 @section('page-title')
     @parent
-    - {{ $task->exists ? trans('totem::tasks.Update') : trans('totem::tasks.Create')}} {{ trans('totem::tasks.task') }}
+    - {{ $task->exists ? trans('totem::tasks.update') : trans('totem::tasks.create')}} {{ trans('totem::tasks.task') }}
 @stop
 @section('main-panel-before')
     <form action="{{ request()->fullUrl() }}" method="POST">
@@ -9,7 +9,7 @@
 @stop
 @section('title')
     <div class="uk-flex uk-flex-between uk-flex-middle">
-        <h5 class="uk-card-title uk-margin-remove">{{ $task->exists ? trans('totem::tasks.Update') : trans('totem::tasks.Create')}} {{ trans('totem::tasks.task') }}</h5>
+        <h5 class="uk-card-title uk-margin-remove">{{ $task->exists ? trans('totem::tasks.update') : trans('totem::tasks.create')}} {{ trans('totem::tasks.task') }}</h5>
     </div>
 @stop
 @section('main-panel-content')
@@ -74,10 +74,10 @@
                 </div>
                 <div class="uk-width-1-1@s uk-width-2-3@m uk-form-controls-text">
                     <label>
-                        <input type="radio" name="type" v-model="type" value="expression"> Expression
+                        <input type="radio" name="type" v-model="type" value="expression"> {{ trans('totem::tasks.expression') }}
                     </label><br>
                     <label>
-                        <input type="radio" name="type" v-model="type" value="frequency"> Frequencies
+                        <input type="radio" name="type" v-model="type" value="frequency"> {{ trans('totem::tasks.frequencies') }}
                     </label>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                     <div class="uk-text-meta">Add frequencies to your task. These frequencies will be converted into a cron expression while scheduling the task</div>
                 </div>
                 <div class="uk-width-1-1@s uk-width-2-3@m">
-                    <a class="uk-button uk-button-small uk-button-link" @click.self.prevent="showModal = true">Add Frequency</a>
+                    <a class="uk-button uk-button-small uk-button-link" @click.self.prevent="showModal = true">{{ trans('totem::tasks.add_frequency') }}</a>
                     @include('totem::dialogs.frequencies.add')
                     <table class="uk-table uk-table-divider uk-margin-remove">
                         <thead>
@@ -200,21 +200,21 @@
             <label class="uk-margin">
                 <input type="hidden" name="dont_overlap" id="dont_overlap" value="0" {{old('dont_overlap', $task->dont_overlap) ? '' : 'checked'}}>
                 <input type="checkbox" name="dont_overlap" id="dont_overlap" value="1" {{old('dont_overlap', $task->dont_overlap) ? 'checked' : ''}}>
-                Don't Overlap
+                {{ trans('totem::tasks.do_not_overlap') }}
             </label>
 
             <div class="uk-margin">
                 <label class="uk-margin">
                     <input type="hidden" name="run_in_maintenance" id="run_in_maintenance" value="0" {{old('run_in_maintenance', $task->run_in_maintenance) ? '' : 'checked'}}>
                     <input type="checkbox" name="run_in_maintenance" id="run_in_maintenance" value="1" {{old('run_in_maintenance', $task->run_in_maintenance) ? 'checked' : ''}}>
-                    Run in maintenance mode
+                    {{ trans('totem::tasks.run_in_maintenance_mode') }}
                 </label>
             </div>
         </div>
     </div>
 @stop
 @section('main-panel-footer')
-    <button class="uk-button uk-button-primary uk-button-small" type="submit">{{ trans('totem::tasks.') }}</button>
+    <button class="uk-button uk-button-primary uk-button-small" type="submit">{{ trans('totem::tasks.save') }}</button>
 @stop
 @section('main-panel-after')
     </form>
