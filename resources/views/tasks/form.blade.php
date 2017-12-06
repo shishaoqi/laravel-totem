@@ -1,7 +1,7 @@
 @extends('totem::layout')
 @section('page-title')
     @parent
-    - {{ $task->exists ? 'Update' : 'Create'}} Task
+    - {{ $task->exists ? trans('totem::tasks.Update') : trans('totem::tasks.Create')}} {{ trans('totem::tasks.task') }}
 @stop
 @section('main-panel-before')
     <form action="{{ request()->fullUrl() }}" method="POST">
@@ -9,13 +9,13 @@
 @stop
 @section('title')
     <div class="uk-flex uk-flex-between uk-flex-middle">
-        <h5 class="uk-card-title uk-margin-remove">{{ $task->exists ? 'Update' : 'Create'}} Task</h5>
+        <h5 class="uk-card-title uk-margin-remove">{{ $task->exists ? trans('totem::tasks.Update') : trans('totem::tasks.Create')}} {{ trans('totem::tasks.task') }}</h5>
     </div>
 @stop
 @section('main-panel-content')
     <div class="uk-grid">
         <div class="uk-width-1-1@s uk-width-1-3@m">
-            <label class="uk-form-label">Description</label>
+            <label class="uk-form-label">{{ trans('totem::tasks.description') }}</label>
             <div class="uk-text-meta">Provide a descriptive name for your task</div>
         </div>
         <div class="uk-width-1-1@s uk-width-2-3@m">
@@ -27,12 +27,12 @@
     </div>
     <div class="uk-grid">
         <div class="uk-width-1-1@s uk-width-1-3@m">
-            <label class="uk-form-label">Command</label>
+            <label class="uk-form-label">{{ trans('totem::tasks.command') }}</label>
             <div class="uk-text-meta">Select an artisan command to schedule</div>
         </div>
         <div class="uk-width-1-1@s uk-width-2-3@m">
             <select id="command" name="command" class="uk-select" placeholder="Click here to select one of the available commands">
-                <option value="">Select a command</option>
+                <option value="">{{ trans('totem::tasks.select_a_command') }}</option>
                 @foreach ($commands as $command)
                     <option value="{{$command->getName()}}" {{old('command', $task->command) == $command->getName() ? 'selected' : ''}}>{{$command->getDescription()}}</option>
                 @endforeach
@@ -44,7 +44,7 @@
     </div>
     <div class="uk-grid">
         <div class="uk-width-1-1@s uk-width-1-3@m">
-            <label class="uk-form-label">Parameters (Optional)</label>
+            <label class="uk-form-label">{{ trans('totem::tasks.parameters') }}</label>
             <div class="uk-text-meta">Command parameters required to run the selected command</div>
         </div>
         <div class="uk-width-1-1@s uk-width-2-3@m">
@@ -54,7 +54,7 @@
     <hr class="uk-divider-icon">
     <div class="uk-grid">
         <div class="uk-width-1-1@s uk-width-1-3@m">
-            <label class="uk-form-label">Timezone</label>
+            <label class="uk-form-label">{{ trans('totem::tasks.timezone') }}</label>
             <div class="uk-text-meta">Select a timezone for your task. App timezone is selected by default</div>
         </div>
         <div class="uk-width-1-1@s uk-width-2-3@m">
@@ -69,7 +69,7 @@
         <div class="uk-margin">
             <div class="uk-grid">
                 <div class="uk-width-1-1@s uk-width-1-3@m">
-                    <div class="uk-form-label">Type</div>
+                    <div class="uk-form-label">{{ trans('totem::tasks.ype') }}</div>
                     <div class="uk-text-meta">Choose whether to define a cron expression or to add frequencies</div>
                 </div>
                 <div class="uk-width-1-1@s uk-width-2-3@m uk-form-controls-text">
@@ -83,7 +83,7 @@
             </div>
             <div class="uk-grid" v-if="isCron">
                 <div class="uk-width-1-1@s uk-width-1-3@m">
-                    <label class="uk-form-label">Cron Expression</label>
+                    <label class="uk-form-label">{{ trans('totem::tasks.cron_expression') }}</label>
                     <div class="uk-text-meta">Add a cron expression for your task</div>
                 </div>
                 <div class="uk-width-1-1@s uk-width-2-3@m">
@@ -95,7 +95,7 @@
             </div>
             <div class="uk-grid" v-if="managesFrequencies">
                 <div class="uk-width-1-1@s uk-width-1-3@m">
-                    <label class="uk-form-label">Frequencies</label>
+                    <label class="uk-form-label">{{ trans('totem::tasks.frequencies') }}</label>
                     <div class="uk-text-meta">Add frequencies to your task. These frequencies will be converted into a cron expression while scheduling the task</div>
                 </div>
                 <div class="uk-width-1-1@s uk-width-2-3@m">
@@ -105,10 +105,10 @@
                         <thead>
                             <tr>
                                 <th class="uk-padding-remove-left">
-                                    Frequency
+                                    {{ trans('totem::tasks.frequency') }}
                                 </th>
                                 <th class="uk-padding-remove-left">
-                                    Parameters
+                                    {{ trans('totem::tasks.parameters') }}
                                 </th>
                             </tr>
                         </thead>
@@ -129,7 +129,7 @@
                                         </span>
                                     </span>
                                     <span v-else>
-                                        No Parameters
+                                        {{ trans('totem::tasks.no_parameters') }}
                                     </span>
                                 </td>
                                 <td>
@@ -139,7 +139,7 @@
                                 </td>
                             </tr>
                             <tr v-if="frequencies.length == 0">
-                                <td colspan="3" class="uk-padding-remove-left">No Frequencies Found</td>
+                                <td colspan="3" class="uk-padding-remove-left">{{ trans('totem::tasks.no_frequencies_found') }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -153,7 +153,7 @@
     <hr class="uk-divider-icon">
     <div class="uk-grid">
         <div class="uk-width-1-1@s uk-width-1-3@m">
-            <label class="uk-form-label">Email Notification (optional)</label>
+            <label class="uk-form-label">{{ trans('totem::tasks.email_notification') }}</label>
             <div class="uk-text-meta">Add an email address to receive notifications when this task gets executed. Leave empty if you do not wish to receive email notifications</div>
         </div>
         <div class="uk-width-1-1@s uk-width-2-3@m">
@@ -165,7 +165,7 @@
     </div>
     <div class="uk-grid">
         <div class="uk-width-1-1@s uk-width-1-3@m">
-            <label class="uk-form-label">SMS Notification (optional)</label>
+            <label class="uk-form-label">{{ trans('totem::tasks.SMS_notification') }}</label>
             <div class="uk-text-meta">Add a phone number to receive SMS notifications. Leave empty if you do not wish to receive sms notifications</div>
         </div>
         <div class="uk-width-1-1@s uk-width-2-3@m">
@@ -177,7 +177,7 @@
     </div>
     <div class="uk-grid">
         <div class="uk-width-1-1@s uk-width-1-3@m">
-            <label class="uk-form-label">Slack Notification (optional)</label>
+            <label class="uk-form-label">{{ trans('totem::tasks.slack_notification') }}</label>
             <div class="uk-text-meta">Add a slack web hook url to recieve slack notifications. Phone numbers should include country code and are digits only. Leave empty if you do not wish to receive slack notifications</div>
         </div>
         <div class="uk-width-1-1@s uk-width-2-3@m">
@@ -190,7 +190,7 @@
     <hr class="uk-divider-icon">
     <div class="uk-grid">
         <div class="uk-width-1-1@s uk-width-1-3@m">
-            <div class="uk-form-label">Miscellaneous Options</div>
+            <div class="uk-form-label">{{ trans('totem::tasks.miscellaneous_options') }}</div>
             <ul class="uk-list uk-padding-remove">
                 <li class="uk-text-meta">Decide whether multiple instances of same task should overlap each other or not.</li>
                 <li class="uk-text-meta">Decide whether the task should be executed while the app is in maintenance mode.</li>
@@ -214,7 +214,7 @@
     </div>
 @stop
 @section('main-panel-footer')
-    <button class="uk-button uk-button-primary uk-button-small" type="submit">Save</button>
+    <button class="uk-button uk-button-primary uk-button-small" type="submit">{{ trans('totem::tasks.') }}</button>
 @stop
 @section('main-panel-after')
     </form>
