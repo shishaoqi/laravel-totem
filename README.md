@@ -17,6 +17,7 @@ Manage your `Laravel Schedule` from a pretty dashboard. Schedule your `Laravel C
 
 |<span align="left">Laravel</span> |<span align="left">Totem</span>| 
 |:-------|----------:|
+|5.6     |     3.0   |
 |5.5     |     2.0   |
 |5.4     |     1.0   |
 
@@ -102,6 +103,23 @@ Example filters
 ```
 
 This feature uses [fnmatch](http://php.net/manual/en/function.fnmatch.php) syntax to filter displayed commands. `stats:*` will match all Artisan commands that start with `stats:` while `email:daily-reports` will only match the command named `email:daily-reports`.
+
+This filter can be used as either a whitelist or a blacklist. By default it acts as a whitelist but an option flag can be set to instead act as a blacklist.
+
+```php
+'artisan' => [
+    'command_filter' => [
+        'stats:*',
+        'email:daily-reports'
+    ],
+    'whitelist' => true,
+],
+
+```
+
+If the value of whitelist is `false` then the filter acts as a blacklist.
+
+`'whitelist' => false`
 
 #### Middleware
 
