@@ -70,6 +70,10 @@
             <li>
                 <span class="uk-float-left">{{ trans('totem::tasks.run_in_maintenance_mode') }}</span>
             </li>
+        @else
+            <li>
+                <span class="uk-float-left">Task will <b>NOT</b> run when in maintenance mode</span>
+            </li>        
         @endif
     </ul>
 @stop

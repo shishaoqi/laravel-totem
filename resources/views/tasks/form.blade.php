@@ -34,7 +34,11 @@
             <select id="command" name="command" class="uk-select" placeholder="Click here to select one of the available commands">
                 <option value="">{{ trans('totem::tasks.select_a_command') }}</option>
                 @foreach ($commands as $command)
-                    <option value="{{$command->getName()}}" {{old('command', $task->command) == $command->getName() ? 'selected' : ''}}>{{$command->getDescription()}}</option>
+                    <optgroup label="{{$command->getName()}}">
+                        <option value="{{$command->getName()}}" {{old('command', $task->command) == $command->getName() ? 'selected' : ''}}>
+                            {{$command->getDescription()}}
+                        </option>
+                       </optgroup>
                 @endforeach
             </select>
             @if($errors->has('command'))
@@ -210,6 +214,29 @@
                     {{ trans('totem::tasks.run_in_maintenance_mode') }}
                 </label>
             </div>
+        </div>
+    </div>
+    <hr class="uk-divider-icon">
+    <div class="uk-grid">
+        <div class="uk-width-1-1@s uk-width-1-3@m">
+            <div class="uk-form-label">Cleanup Options</div>
+            <ul class="uk-list uk-padding-remove">
+                <li class="uk-text-meta">Determine if an over-abundance of results will be removed after a set limit or age. Set non-zero value to enable.</li>
+            </ul>
+        </div>
+        <div class="uk-width-1-1@s uk-width-2-3@m uk-form-controls-text">
+            <label class="uk-margin">
+                Auto Cleanup results after
+                <br>
+                <input type="number" name="auto_cleanup_num" id="auto_cleanup_num" value="{{ old('auto_cleanup_num', $task->auto_cleanup_num) }}" />
+                <br>
+                <label>
+                    <input type="radio" name="auto_cleanup_type" value="days" {{old('auto_cleanup_type', $task->auto_cleanup_type) !== 'results' ? '' : 'checked'}}> Days
+                </label><br>
+                <label>
+                    <input type="radio" name="auto_cleanup_type" value="results" {{old('auto_cleanup_type', $task->auto_cleanup_type) === 'results' ? '' : 'checked'}}> Results
+                </label>
+            </label>
         </div>
     </div>
 @stop

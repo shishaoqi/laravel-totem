@@ -3,6 +3,7 @@
 namespace Studio\Totem\Providers;
 
 use Cron\CronExpression;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
@@ -52,14 +53,19 @@ class TotemServiceProvider extends ServiceProvider
         $this->app->register(TotemRouteServiceProvider::class);
         $this->app->register(TotemEventServiceProvider::class);
 
-        if (Schema::hasTable('tasks')) {
-            $this->app->register(ConsoleServiceProvider::class);
-        }
-
         $this->mergeConfigFrom(
             __DIR__.'/../../config/totem.php',
             'totem'
         );
+
+        try {
+            if (Schema::hasTable(config('totem.table_prefix').'tasks')) {
+                $this->app->register(ConsoleServiceProvider::class);
+            }
+        } catch (\PDOException $ex) {
+            // This will trigger if DB cannot be connected to
+            Log::error($ex->getMessage());
+        }
     }
 
     /**
@@ -92,6 +98,10 @@ class TotemServiceProvider extends ServiceProvider
         $this->publishes([
             TOTEM_PATH.'/public/img' => public_path('vendor/totem/img'),
         ], 'totem-assets');
+
+        $this->publishes([
+            TOTEM_PATH.'/config' => config_path(),
+        ], 'totem-config');
     }
 
     private function publishConfig()
